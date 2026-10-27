@@ -1,0 +1,293 @@
+/* Paleta: define aquí tus colores una sola vez */
+:root {
+    --fondo: #f1f4f9;
+    --superficie: #ffffff;
+    --texto: #1c2733;
+    --principal: #12355b;
+    --acento: #c2410c;
+    --sombra: 0 2px 8px rgba(18, 53, 91, 0.12);
+    --sombra-fuerte: 0 8px 20px rgba(18, 53, 91, 0.2);
+    --radio: 0.75rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--texto);
+    background-color: var(--fondo);
+}
+
+h1, h2, h3 {
+    color: var(--principal);
+    line-height: 1.2;
+}
+
+a {
+    color: var(--acento);
+    text-underline-offset: 0.2em;
+}
+
+a:hover {
+    color: var(--principal);
+}
+
+/* Para quien navega con teclado: se ve dónde está el foco */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--principal);
+    outline-offset: 3px;
+}
+
+/* ---------- Cabecera y menú ---------- */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    padding: 1.25rem 1.5rem;
+    background-color: var(--superficie);
+    border-bottom: 4px solid var(--principal);
+    box-shadow: var(--sombra);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Enlaces del menú: sin subrayado y con una línea que crece al pasar el ratón */
+nav a {
+    padding-bottom: 0.2rem;
+    font-weight: 600;
+    color: var(--principal);
+    text-decoration: none;
+    background: linear-gradient(var(--acento), var(--acento)) left bottom / 0 3px no-repeat;
+    transition: background-size 0.25s;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    background-size: 100% 3px;
+}
+
+/* El botón del menú solo se muestra en móvil (ver más abajo) */
+.menu-boton {
+    display: none;
+}
+
+/* ---------- Contenido ---------- */
+main {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+section {
+    padding: 2.5rem 0 1rem;
+}
+
+h2 {
+    margin: 0 0 1.25rem;
+    font-size: 1.7rem;
+}
+
+/* Pequeña barra de color bajo cada título de sección */
+h2::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 4px;
+    margin-top: 0.5rem;
+    background-color: var(--acento);
+    border-radius: 2px;
+}
+
+/* El primer párrafo de "Sobre mí" va algo más grande, como entradilla */
+#sobre-mi p:first-of-type {
+    font-size: 1.15rem;
+}
+
+/* Servicios y proyectos: tarjetas en cuadrícula que se adapta al ancho */
+#servicios,
+#proyectos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+}
+
+#servicios h2,
+#proyectos h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0.25rem;
+}
+
+article {
+    padding: 1.25rem 1.5rem;
+    background-color: var(--superficie);
+    border-top: 5px solid var(--principal);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+article h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+article p {
+    margin: 0 0 0.75rem;
+}
+
+article p:last-child {
+    margin-bottom: 0;
+}
+
+article a {
+    font-weight: 600;
+}
+
+/* Las tarjetas de proyectos son enlaces, así que reaccionan al ratón */
+#proyectos article {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#proyectos article:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-fuerte);
+}
+
+#proyectos a::after {
+    content: " →";
+}
+
+/* Reparación: lista con marcas de verificación en lugar de viñetas */
+#reparacion-de-ordenadores ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#reparacion-de-ordenadores li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    padding-left: 1.75rem;
+}
+
+#reparacion-de-ordenadores li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: var(--acento);
+}
+
+/* ---------- Contacto: enlaces con forma de botón ---------- */
+#contacto ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#contacto a {
+    display: inline-block;
+    padding: 0.8rem 1.75rem;
+    background-color: var(--acento);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 2rem;
+    box-shadow: var(--sombra);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+#contacto a:hover {
+    background-color: var(--principal);
+    transform: translateY(-2px);
+}
+
+/* ---------- Pie de página ---------- */
+footer {
+    margin-top: 3rem;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    background-color: var(--principal);
+    color: white;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    main {
+        padding: 0 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Estas reglas solo se aplican si JavaScript está activo (clase "js") */
+    .js .menu-boton {
+        display: block;
+        padding: 0.5rem 1rem;
+        font: inherit;
+        color: white;
+        background-color: var(--principal);
+        border: 0;
+        border-radius: 0.25rem;
+        cursor: pointer;
+    }
+
+    .js nav {
+        display: none;
+        width: 100%;
+    }
+
+    .js nav.abierto {
+        display: block;
+    }
+
+    .js nav ul {
+        flex-direction: column;
+    }
+}
+
+/* Quien prefiere menos movimiento en el sistema no ve animaciones */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
